@@ -38,3 +38,29 @@ body {
   text-align-last: center;
   text-justify: inter-word; /* Improves spacing between words */
 }
+
+/* slider section */
+button.slick-prev:before, button.slick-next:before {
+  color: #000000; /* Set to black, or any color you prefer */
+}
+
+.container {
+  padding-left: 30px;  /* Add padding to match the negative offset of arrows */
+  padding-right: 30px; /* Add padding to match the negative offset of arrows */
+}
+
+.slick-slide img {
+  padding: 0 15px; /* Adjust the 15px to increase or decrease the space */
+}
+
+.slick-prev, .slick-next {
+  z-index: 1; /* Make sure arrows are above other elements */
+}
+
+.slick-prev {
+  left: 20px; /* Increase or adjust as necessary */
+}
+
+.slick-next {
+  right: 20px; /* Increase or adjust as necessary */
+}
