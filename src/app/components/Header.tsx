@@ -21,12 +21,11 @@ const Header = () => {
   }, [isMenuOpen]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex flex-col items-center justify-between">
       <nav className="bg-green-500 text-white w-full p-4">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="flex justify-between items-center w-full md:w-auto">
             <h1 className="text-xl md:text-2xl font-bold text-center flex-1 md:text-left">Quick Easy Recipes</h1>
-            <button className="text-xl md:hidden" onClick={toggleMenu}>
               <button className="text-xl md:hidden" onClick={toggleMenu} style={{ width: '24px' }}>
                 {isMenuOpen ? (
                   <span style={{ fontSize: '20px' }}>X</span>
@@ -34,7 +33,6 @@ const Header = () => {
                   <span style={{ fontSize: '20px' }}>☰</span>
                 )}
               </button>
-            </button>
           </div>
 
           <div ref={menuRef} className="flex-col md:flex-row flex overflow-hidden transition-max-height duration-300 ease-in-out md:hidden" style={{ maxHeight: '0' }}>

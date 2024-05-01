@@ -1,13 +1,22 @@
-import Head from 'next/head';
+import React from 'react';
+import Image from 'next/image';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
-    <>
-      <Head>
-        <title>Quick Easy Recipes</title>
-        <meta name="description" content="Find the best recipes for quick and easy meals!" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </>
+    <div className="relative h-screen w-full">
+      <Image
+        src="/spaghetti.png"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        alt="Delicious Spaghetti"
+        priority
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+  <h1 className="text-6xl font-bold text-white max-w-2xl mx-auto px-4 my-8 text-center">Discover Delicious Dishes</h1>
+</div>
+    </div>
   );
-}
+};
+
+export default HomePage;

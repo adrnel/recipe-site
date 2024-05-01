@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +31,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.custom-text {
+  text-align: center;
+  text-align-last: center;
+  text-justify: inter-word; /* Improves spacing between words */
 }
