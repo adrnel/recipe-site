@@ -43,13 +43,42 @@ const HomePage = () => {
       <section className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6">Top Recipes</h2>
         <Slider {...settings}>
-          <div><img src="/spaghetti.png" alt="Recipe 1" /></div>
-          <div><img src="/spaghetti.png" alt="Recipe 2" /></div>
-          <div><img src="/spaghetti.png" alt="Recipe 3" /></div>
-          <div><img src="/spaghetti.png" alt="Recipe 3" /></div>
-          <div><img src="/spaghetti.png" alt="Recipe 3" /></div>
-          <div><img src="/spaghetti.png" alt="Recipe 3" /></div>
-          {/* More slides as needed */}
+          <div className="relative">
+            <img src="/tikka_masala.png" alt="Tika Masala" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Tika Masala</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/shepards_pie.png" alt="Shepards Pie" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Shepards Pie</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/beef_stroganoff.png" alt="Beef Stroganoff" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Beef Stroganoff</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/chili_con_carne.png" alt="Recipe 2" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Chili Con Carne</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/spaghetti.png" alt="Recipe 2" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Spaghetti Bolognase</p>
+            </div>
+          </div>
+          <div className="relative">
+            <img src="/chicken_parmesan.png" alt="Chicken Parmesan" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-white text-2xl font-bold">Chicken Parmesan</p>
+            </div>
+          </div>
         </Slider>
       </section>
     </main>
