@@ -33,6 +33,10 @@ body {
   }
 }
 
+section {
+  margin-bottom: 4rem; /* Adds more space below each section */
+}
+
 .custom-text {
   text-align: center;
   text-align-last: center;

@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const router = useRouter(); // To access route information
 
-  // Function to toggle menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Calculate height dynamically
   useEffect(() => {
     if (menuRef.current) {
       if (isMenuOpen) {
@@ -26,34 +27,30 @@ const Header = () => {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="flex justify-between items-center w-full md:w-auto">
             <h1 className="text-xl md:text-2xl font-bold text-center flex-1 md:text-left">Quick Easy Recipes</h1>
-              <button className="text-xl md:hidden" onClick={toggleMenu} style={{ width: '24px' }}>
-                {isMenuOpen ? (
-                  <span style={{ fontSize: '20px' }}>X</span>
-                ) : (
-                  <span style={{ fontSize: '20px' }}>☰</span>
-                )}
-              </button>
+            <button className="text-xl md:hidden" onClick={toggleMenu} style={{ width: '24px' }}>
+              {isMenuOpen ? (
+                <span style={{ fontSize: '20px' }}>X</span>
+              ) : (
+                <span style={{ fontSize: '20px' }}>☰</span>
+              )}
+            </button>
           </div>
 
+          {/* Responsive Navigation Menu */}
           <div ref={menuRef} className="flex-col md:flex-row flex overflow-hidden transition-max-height duration-300 ease-in-out md:hidden" style={{ maxHeight: '0' }}>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">Home</button>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">Recipes</button>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">About Us</button>
-            <div className="mt-4 md:mt-0 md:hidden">
-              <input type="text" placeholder="Search for recipe" className="p-2 rounded" />
-            </div>
+            <Link href="/" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/' ? 'bg-green-700' : ''}`}>Home</Link>
+            <Link href="/recipes" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/recipes' ? 'bg-green-700' : ''}`}>Recipes</Link>
+            <Link href="/about" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/about' ? 'bg-green-700' : ''}`}>About Us</Link>
           </div>
 
-          
+          {/* Desktop Navigation */}
           <div className={`flex-col md:flex-row flex ${isMenuOpen ? 'flex' : 'hidden'} md:flex gap-4 mt-4 md:mt-0 hidden md:block`}>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">Home</button>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">Recipes</button>
-            <button className="py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700">About Us</button>
-            <div className="mt-4 md:mt-0 md:hidden">
-              <input type="text" placeholder="Search for recipe" className="p-2 rounded" />
-            </div>
+            <Link href="/" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/' ? 'bg-green-700' : ''}`}>Home</Link>
+            <Link href="/recipes" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/recipes' ? 'bg-green-700' : ''}`}>Recipes</Link>
+            <Link href="/about" className={`py-2 px-4 rounded hover:bg-green-600 focus:bg-green-700 ${router.pathname === '/about' ? 'bg-green-700' : ''}`}>About Us</Link>
           </div>
 
+          {/* Search Bar Always Visible on Desktop */}
           <div className="hidden md:block">
             <input type="text" placeholder="Search for recipe" className="p-2 rounded" />
           </div>
