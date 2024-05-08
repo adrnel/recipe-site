@@ -37,7 +37,7 @@ const HomePage = () => {
     //   </div>
     // </div>
     <main className="relative">
-      <div className="bg-hero-pattern bg-cover bg-center h-screen w-full flex items-center justify-center text-white" style={{ backgroundImage: 'url(/spaghetti.png)' }}>
+      <div className="bg-hero-pattern bg-cover bg-center h-screen w-full flex items-center justify-center text-white" style={{ backgroundImage: 'url(/spaghetti_bolognese.png)' }}>
         <h1 className="text-6xl font-bold text-white max-w-2xl mx-auto px-4 my-8 text-center">Discover Delicious Dishes</h1>
       </div>
       <section className="container mx-auto px-4 py-8">
@@ -68,7 +68,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="relative">
-            <img src="/spaghetti.png" alt="Recipe 2" />
+            <img src="/spaghetti_bolognese.png" alt="Recipe 2" />
             <div className="absolute inset-0 flex items-center justify-center">
               <p className="text-white text-2xl font-bold">Spaghetti Bolognase</p>
             </div>

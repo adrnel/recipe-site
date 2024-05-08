@@ -37,7 +37,7 @@ const AboutUs = () => {
         <section>
           <h2 className="text-3xl font-bold mt-4 mb-4">Let&apos;s Connect</h2>
           <p>
-            I&apos;m always eager to collaborate on innovative projects or discuss potential opportunities. Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/adrian-nelson) or drop me an email at adriannelson1989@gmail.com.
+            I&apos;m always eager to collaborate on innovative projects or discuss potential opportunities. Feel free to connect with me on LinkedIn (https://www.linkedin.com/in/adrian-nelson) or drop me an email at adriannelson1989@gmail.com.
           </p>
         </section>
         
