@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { Recipe } from '@/types';
 
 const RecipePage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [recipe, setRecipe] = useState<Recipe | null>(null);
-
-  interface Recipe {
-    id: string;
-    name: string;
-    image: string;
-    prepTime: string;
-    cookingTime: string;
-    difficulty: string;
-    serves: string;
-    ingredients: string[];
-    method: string[];
-  }
 
   useEffect(() => {
     async function fetchRecipe(recipeId: string) {
@@ -74,24 +63,25 @@ const RecipePage = () => {
           </div>
         </div>
 
-        <div className="block sm:hidden mb-8">
-          <div className="mb-2">
+        <div className="block sm:hidden mb-8 rounded-lg border-solid border-2 overflow-hidden">
+          <div>
             <div className="font-medium p-2">Prep Time</div>
-            <div className="p-2 bg-gray-100 rounded">{recipe.prepTime}</div>
+            <div className="p-2 bg-gray-100">{recipe.prepTime}</div>
           </div>
-          <div className="mb-2">
+          <div>
             <div className="font-medium p-2">Cooking Time</div>
-            <div className="p-2 bg-gray-100 rounded">{recipe.cookingTime}</div>
+            <div className="p-2 bg-gray-100">{recipe.cookingTime}</div>
           </div>
-          <div className="mb-2">
+          <div>
             <div className="font-medium p-2">Difficulty</div>
-            <div className="p-2 bg-gray-100 rounded">{recipe.difficulty}</div>
+            <div className="p-2 bg-gray-100">{recipe.difficulty}</div>
           </div>
-          <div className="mb-2">
+          <div>
             <div className="font-medium p-2">Serves</div>
-            <div className="p-2 bg-gray-100 rounded">{recipe.serves}</div>
+            <div className="p-2 bg-gray-100 rounded-b-lg">{recipe.serves}</div>
           </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="md:col-span-1">
             <h2 className="text-xl font-bold">Ingredients</h2>
