@@ -1,0 +1,29 @@
+[
+  {
+    "id": "5",
+    "name": "Spaghetti Bolognese",
+    "image": "/spaghetti_bolognese.png",
+    "prepTime": "10 mins",
+    "cookingTime": "40 mins",
+    "difficulty": "Easy",
+    "serves": "4",
+    "ingredients": [
+      "400g spaghetti",
+      "500g ground beef",
+      "1 large onion, finely chopped",
+      "400g canned crushed tomatoes",
+      "2 tbsp tomato paste",
+      "1 cup beef stock or water",
+      "2 tbsp olive oil",
+      "Salt and pepper to taste"
+    ],
+    "method": [
+      "Heat olive oil in a pan over medium heat and cook chopped onion until translucent.",
+      "Add ground beef to the pan, breaking it apart. Cook until browned and season with salt and pepper.",
+      "Stir in crushed tomatoes, tomato paste, and beef stock or water. Simmer for 30 mins.",
+      "While the sauce simmers, cook spaghetti in a large pot of boiling salted water until al dente. Drain.",
+      "Serve the Bolognese sauce over the cooked spaghetti."
+    ]
+  }
+]
+

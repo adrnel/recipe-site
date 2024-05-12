@@ -34,37 +34,41 @@ body {
 }
 
 section {
-  margin-bottom: 4rem; /* Adds more space below each section */
+  margin-bottom: 4rem;
 }
 
 .custom-text {
   text-align: center;
   text-align-last: center;
-  text-justify: inter-word; /* Improves spacing between words */
+  text-justify: inter-word;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
 }
 
 /* slider section */
 button.slick-prev:before, button.slick-next:before {
-  color: #000000; /* Set to black, or any color you prefer */
+  color: #000000;
 }
 
 .container {
-  padding-left: 30px;  /* Add padding to match the negative offset of arrows */
-  padding-right: 30px; /* Add padding to match the negative offset of arrows */
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .slick-slide img {
-  padding: 0 15px; /* Adjust the 15px to increase or decrease the space */
+  padding: 0 15px; 
 }
 
 .slick-prev, .slick-next {
-  z-index: 1; /* Make sure arrows are above other elements */
+  z-index: 1;
 }
 
 .slick-prev {
-  left: 20px; /* Increase or adjust as necessary */
+  left: 20px;
 }
 
 .slick-next {
-  right: 20px; /* Increase or adjust as necessary */
+  right: 20px;
 }
