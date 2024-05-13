@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter(); // To access route information
 
   const toggleMenu = () => {
