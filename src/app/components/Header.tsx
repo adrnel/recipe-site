@@ -73,6 +73,14 @@ const Header = () => {
             >
               About Us
             </Link>
+
+            <div className="mt-4">
+              <input
+                type="text"
+                placeholder="Search for recipe"
+                className="p-2 rounded text-gray-900"
+              />
+            </div>
           </div>
 
           <div
@@ -106,11 +114,11 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block pl-8">
             <input
               type="text"
               placeholder="Search for recipe"
-              className="p-2 rounded"
+              className="p-2 rounded text-gray-900"
             />
           </div>
         </div>
