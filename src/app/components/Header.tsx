@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SearchRecipes from './SearchRecipes';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +47,7 @@ const Header = () => {
 
           <div
             ref={menuRef}
-            className="flex-col md:flex-row flex overflow-hidden transition-max-height duration-300 ease-in-out md:hidden"
+            className={`flex-col md:flex-row flex ${isMenuOpen ? '' : 'overflow-hidden'} transition-max-height duration-300 ease-in-out md:hidden`}
             style={{ maxHeight: '0' }}
           >
             <Link
@@ -75,11 +76,7 @@ const Header = () => {
             </Link>
 
             <div className="mt-4">
-              <input
-                type="text"
-                placeholder="Search for recipe"
-                className="p-2 rounded text-gray-900"
-              />
+              <SearchRecipes />
             </div>
           </div>
 
@@ -115,11 +112,7 @@ const Header = () => {
           </div>
 
           <div className="hidden md:block pl-8">
-            <input
-              type="text"
-              placeholder="Search for recipe"
-              className="p-2 rounded text-gray-900"
-            />
+            <SearchRecipes />
           </div>
         </div>
       </nav>
