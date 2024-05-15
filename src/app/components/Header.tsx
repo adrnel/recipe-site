@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <main className="flex flex-col items-center justify-between">
-      <nav className="bg-green-500 text-white w-full p-4">
+      <nav className="bg-green-500 text-white w-full py-4">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="flex justify-between items-center w-full md:w-auto">
             <Link href="/">
