@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { Recipe } from '@/types';
 
 const SearchRecipes = () => {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch('/data/recipes.json');
-        const data = await response.json();
+        const data: Recipe[] = await response.json();
         setRecipes(data);
       } catch (error) {
         console.error('Failed to fetch recipes:', error);
@@ -22,10 +23,10 @@ const SearchRecipes = () => {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target)
+        !containerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }
@@ -37,7 +38,7 @@ const SearchRecipes = () => {
     };
   }, []);
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
     if (event.target.value !== '') {
       setIsOpen(true);
