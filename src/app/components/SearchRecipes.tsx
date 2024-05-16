@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Recipe } from '@/types';
 
 const SearchRecipes = () => {
@@ -7,6 +8,7 @@ const SearchRecipes = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -38,6 +40,18 @@ const SearchRecipes = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setSearchQuery('');
+      setIsOpen(false);
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
     if (event.target.value !== '') {
@@ -46,7 +60,6 @@ const SearchRecipes = () => {
   };
 
   const handleInputBlur = () => {
-    // Optionally delay hiding the dropdown to allow time for click to register on links
     setTimeout(() => setIsOpen(false), 100);
   };
 
@@ -55,11 +68,12 @@ const SearchRecipes = () => {
   );
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div ref={containerRef}>
       <input
         type="text"
         placeholder="Search for recipe"
         className="p-2 rounded text-gray-900 w-full"
+        value={searchQuery}
         onChange={handleSearchChange}
         onBlur={handleInputBlur}
         onFocus={() => setIsOpen(true)}
