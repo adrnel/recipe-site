@@ -41,7 +41,7 @@
     "prepTime": "20 mins",
     "cookingTime": "40 mins",
     "difficulty": "Medium",
-    "serves": "4",
+    "serves": 4,
     "ingredients": [
       "500g ground beef or lamb",
       "1 large onion, chopped",
@@ -76,7 +76,7 @@
     "prepTime": "15 mins",
     "cookingTime": "25 mins",
     "difficulty": "Medium",
-    "serves": "4",
+    "serves": 4,
     "ingredients": [
       "500g beef sirloin, thinly sliced",
       "1 large onion, thinly sliced",
@@ -109,7 +109,7 @@
     "prepTime": "15 mins",
     "cookingTime": "45 mins",
     "difficulty": "Hard",
-    "serves": "6",
+    "serves": 6,
     "ingredients": [
       "500g ground beef",
       "1 large onion, chopped",
@@ -142,7 +142,7 @@
     "prepTime": "10 mins",
     "cookingTime": "40 mins",
     "difficulty": "Easy",
-    "serves": "4",
+    "serves": 4,
     "ingredients": [
       "400g spaghetti",
       "500g ground beef",
@@ -171,7 +171,7 @@
     "prepTime": "10 mins",
     "cookingTime": "20 mins",
     "difficulty": "Easy",
-    "serves": "4",
+    "serves": 4,
     "ingredients": [
       "4 boneless, skinless chicken breasts",
       "1 cup breadcrumbs",

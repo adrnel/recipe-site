@@ -1,20 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Recipe } from '@/types';
 
-type RecipeType = {
-  id: number;
-  name: string;
-  summary: string;
-  rating: number;
-  ratingsCount: number;
-  time: string;
-  difficulty: string;
-  serves: number;
-  image: string;
-};
-
-const RecipeCard = ({ recipe }: { recipe: RecipeType }) => {
+const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg m-2 flex flex-col justify-between h-full">
       <div>

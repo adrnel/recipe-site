@@ -5,7 +5,11 @@ export interface Recipe {
   prepTime: string;
   cookingTime: string;
   difficulty: string;
-  serves: string;
+  serves: number;
   ingredients: string[];
   method: string[];
+  summary: string;
+  rating: number;
+  ratingsCount: number;
+  time: string;
 }
