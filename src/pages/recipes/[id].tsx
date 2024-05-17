@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
+import { GetServerSideProps, NextPageContext } from 'next';
 import Image from 'next/image';
 import { Recipe } from '@/types';
+import { ParsedUrlQuery } from 'querystring';
 
-const RecipePage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
+interface RecipePageProps {
+  recipe: Recipe;
+}
 
-  useEffect(() => {
-    async function fetchRecipe(recipeId: string) {
-      const response = await fetch(`/data/recipes.json`);
-      const recipes = await response.json();
-      const foundRecipe = recipes.find((r: Recipe) => r.id === recipeId);
-      setRecipe(foundRecipe);
-    }
+interface Params extends ParsedUrlQuery {
+  id: string;
+}
 
-    if (typeof id === 'string') {
-      fetchRecipe(id);
-    }
-  }, [id]);
-
+const RecipePage = ({ recipe }: RecipePageProps) => {
   if (!recipe) {
     return <div>Loading...</div>;
   }
@@ -103,6 +95,24 @@ const RecipePage = () => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params as Params;
+  const res = await fetch(`http://localhost:3000/api/recipes?id=${id}`);
+  const recipe = await res.json();
+
+  if (!recipe) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      recipe,
+    },
+  };
 };
 
 export default RecipePage;

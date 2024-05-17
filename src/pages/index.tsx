@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -24,23 +23,11 @@ const settings = {
   ],
 };
 
-const HomePage = () => {
-  const [recipes, setRecipes] = useState<Recipe[] | null>(null);
+interface HomePageProps {
+  recipes: Recipe[];
+}
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      const response = await fetch('/data/recipes.json'); // Adjust this path if needed
-      const data = await response.json();
-      setRecipes(data);
-    };
-
-    fetchRecipes();
-  }, []);
-
-  if (!recipes) {
-    return <div>Loading...</div>;
-  }
-
+const HomePage = ({ recipes }: HomePageProps) => {
   return (
     <main className="relative">
       <div
@@ -54,7 +41,7 @@ const HomePage = () => {
       <section className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6">Top Recipes</h2>
         <Slider {...settings}>
-          {recipes?.map((recipe) => (
+          {recipes.map((recipe) => (
             <div key={recipe.id} className="relative">
               <Link href={`/recipes/${recipe.id}`}>
                 <img src={recipe.image} alt={recipe.name} />
@@ -71,5 +58,16 @@ const HomePage = () => {
     </main>
   );
 };
+
+export async function getServerSideProps() {
+  const res = await fetch('http://localhost:3000/api/recipes');
+  const recipes: Recipe[] = await res.json();
+
+  return {
+    props: {
+      recipes,
+    },
+  };
+}
 
 export default HomePage;

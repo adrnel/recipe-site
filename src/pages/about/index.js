@@ -4,8 +4,6 @@ const AboutUs = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto text-center">
-        {' '}
-        {/* This div centers and confines content */}
         <h1 className="text-4xl font-bold my-6 mb-12">About Us</h1>
         <section>
           <h2 className="text-3xl font-bold mt-4 mb-4">Who I Am</h2>
@@ -87,5 +85,11 @@ const AboutUs = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
 
 export default AboutUs;
