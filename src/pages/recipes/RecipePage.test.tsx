@@ -68,7 +68,7 @@ describe('RecipePage', () => {
   });
 
   it('renders loading state when recipe is not provided', () => {
-    render(<RecipePage recipe={null} />);
+    render(<RecipePage recipe={undefined} />);
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 });

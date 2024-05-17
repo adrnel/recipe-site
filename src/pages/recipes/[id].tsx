@@ -5,7 +5,7 @@ import { Recipe } from '@/types';
 import { ParsedUrlQuery } from 'querystring';
 
 interface RecipePageProps {
-  recipe: Recipe;
+  recipe?: Recipe;
 }
 
 interface Params extends ParsedUrlQuery {
