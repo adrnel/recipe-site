@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetServerSideProps, NextPageContext } from 'next';
+import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { Recipe } from '@/types';
 import { ParsedUrlQuery } from 'querystring';
@@ -99,7 +99,9 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params as Params;
-  const res = await fetch(`http://localhost:3000/api/recipes?id=${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes?id=${id}`
+  );
   const recipe = await res.json();
 
   if (!recipe) {

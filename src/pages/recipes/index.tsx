@@ -20,7 +20,9 @@ const Recipes = ({ recipes }: RecipesProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/recipes');
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes`
+  );
   const recipes: Recipe[] = await res.json();
 
   return {
