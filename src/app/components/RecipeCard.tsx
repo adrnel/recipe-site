@@ -5,7 +5,10 @@ import { Recipe } from '@/types';
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg m-2 flex flex-col justify-between h-full">
+    <div
+      className="max-w-sm rounded overflow-hidden shadow-lg m-2 flex flex-col justify-between h-full"
+      data-testid="recipe-card"
+    >
       <div>
         <Image
           src={recipe.image}
