@@ -5,7 +5,7 @@ import {
   waitFor,
   act,
 } from '@testing-library/react';
-import SearchRecipes from '../components/SearchRecipes';
+import SearchRecipes from './SearchRecipes';
 import { useRouter } from 'next/router';
 
 jest.mock('next/router', () => ({

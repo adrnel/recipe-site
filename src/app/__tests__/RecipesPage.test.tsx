@@ -1,6 +1,6 @@
 // __tests__/Recipes.test.tsx
 import { render, screen } from '@testing-library/react';
-import Recipes, { getServerSideProps } from '.';
+import Recipes, { getServerSideProps } from '../../pages/recipes';
 import { Recipe } from '@/types';
 import { GetServerSidePropsContext } from 'next';
 

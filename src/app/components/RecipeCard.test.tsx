@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import RecipeCard from '../components/RecipeCard';
+import RecipeCard from './RecipeCard';
 import { Recipe } from '@/types';
 
 jest.mock('next/image', () => ({
