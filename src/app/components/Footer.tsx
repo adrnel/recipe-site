@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Footer = () => (
   <footer className="bg-gray-900 text-white p-4">
     <div className="container mx-auto px-4 flex flex-wrap justify-between items-center">
       <div className="w-full md:w-auto mb-4 md:mb-0 text-center">
-        <p>Contact us: +123 456 7890 | contact@quickrecipes.com</p>
+        <p>Contact us: +123 456 7890 | contact@quickeasyrecipes.com</p>
         <div className="social-icons">{/* Icons for social media */}</div>
       </div>
       <div className="w-full md:w-auto">
@@ -25,12 +26,12 @@ const Footer = () => (
       </div>
     </div>
     <div className="container mx-auto px-4 flex flex-wrap justify-between items-center mt-4">
-      <a href="#privacy" className="mb-2 md:mb-0">
+      <Link href="/privacy-policy" className="mb-2 md:mb-0">
         Privacy Policy
-      </a>
-      <a href="#terms" className="mb-2 md:mb-0">
-        Terms of Use
-      </a>
+      </Link>
+      <Link href="/terms-and-conditions" className="mb-2 md:mb-0">
+        Terms & Conditions
+      </Link>
       <p className="text-center w-full md:w-auto">
         © 2024 Quick Easy Recipes. All rights reserved.
       </p>
