@@ -59,9 +59,9 @@ const SearchRecipes = () => {
     }
   };
 
-  const handleInputBlur = () => {
-    setTimeout(() => setIsOpen(false), 100);
-  };
+  // const handleInputBlur = () => {
+  //   setTimeout(() => setIsOpen(false), 100);
+  // };
 
   const filteredRecipes = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -75,11 +75,11 @@ const SearchRecipes = () => {
         className="p-2 rounded text-gray-900 w-full"
         value={searchQuery}
         onChange={handleSearchChange}
-        onBlur={handleInputBlur}
+        // onBlur={handleInputBlur}
         onFocus={() => setIsOpen(true)}
       />
       {isOpen && searchQuery && (
-        <div className="absolute z-10 w-full bg-white shadow-lg mt-1 rounded">
+        <div className="absolute z-10 w-56 bg-white shadow-lg mt-1 rounded">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
               <Link
