@@ -29,5 +29,5 @@
     "jest.setup.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "out"]
+  "exclude": ["node_modules", ".next", "out", "cypress"]
 }
