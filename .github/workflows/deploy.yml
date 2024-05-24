@@ -37,6 +37,9 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60
+          config-file: cypress.config.ts
 
       - name: Deploy to Staging on Vercel
         if: github.ref == 'refs/heads/staging'
