@@ -1,3 +1,5 @@
+const API_URL = Cypress.env('API_URL');
+
 describe('The Home Page', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -21,7 +23,7 @@ describe('The Home Page', () => {
   });
 
   it('renders each recipe in the slider', () => {
-    cy.request('/api/recipes').then((response) => {
+    cy.request(`${API_URL}/api/recipes`).then((response) => {
       const recipes = response.body;
 
       cy.get('.slick-slide').should('have.length', recipes.length);
@@ -37,7 +39,7 @@ describe('The Home Page', () => {
   });
 
   it('navigates to the recipe details page when a recipe is clicked', () => {
-    cy.request('/api/recipes').then((response) => {
+    cy.request(`${API_URL}/api/recipes`).then((response) => {
       const recipes = response.body;
       const recipe = recipes[0];
       cy.contains(recipe.name).click();

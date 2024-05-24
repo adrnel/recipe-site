@@ -3,6 +3,8 @@ import { GetServerSideProps } from 'next';
 import RecipeCard from '../../app/components/RecipeCard';
 import { Recipe } from '@/types';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
 interface RecipesProps {
   recipes: Recipe[];
 }
@@ -20,9 +22,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes`
-  );
+  const res = await fetch(`${API_URL}/api/recipes`);
   const recipes: Recipe[] = await res.json();
 
   return {

@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Recipe } from '@/types';
 import { ParsedUrlQuery } from 'querystring';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
 interface RecipePageProps {
   recipe?: Recipe;
 }
@@ -99,9 +101,7 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params as Params;
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes?id=${id}`
-  );
+  const res = await fetch(`${API_URL}/api/recipes?id=${id}`);
   const recipe = await res.json();
 
   if (!recipe) {

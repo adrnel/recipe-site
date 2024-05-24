@@ -3,6 +3,8 @@ import RecipePage, { getServerSideProps } from '../../pages/recipes/[id]';
 import { Recipe } from '@/types';
 import { GetServerSidePropsContext } from 'next';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
 const mockRecipe: Recipe = {
   id: '1',
   name: 'Spaghetti Carbonara',
@@ -62,9 +64,7 @@ describe('RecipePage', () => {
       })
     );
 
-    expect(global.fetch).toHaveBeenCalledWith(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes?id=1`
-    );
+    expect(global.fetch).toHaveBeenCalledWith(`${API_URL}/api/recipes?id=1`);
   });
 
   it('renders loading state when recipe is not provided', () => {

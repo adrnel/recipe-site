@@ -1,8 +1,9 @@
-// __tests__/Recipes.test.tsx
 import { render, screen } from '@testing-library/react';
 import Recipes, { getServerSideProps } from '../../pages/recipes';
 import { Recipe } from '@/types';
 import { GetServerSidePropsContext } from 'next';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 const mockRecipes: Recipe[] = [
   {
@@ -71,8 +72,6 @@ describe('Recipes Page', () => {
       })
     );
 
-    expect(global.fetch).toHaveBeenCalledWith(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes`
-    );
+    expect(global.fetch).toHaveBeenCalledWith(`${API_URL}/api/recipes`);
   });
 });

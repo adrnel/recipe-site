@@ -5,6 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
 import { Recipe } from '@/types';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
 const settings = {
   dots: true,
   infinite: false,
@@ -60,9 +62,7 @@ const HomePage = ({ recipes }: HomePageProps) => {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/recipes`
-  );
+  const res = await fetch(`${API_URL}/api/recipes`);
   const recipes: Recipe[] = await res.json();
 
   return {
