@@ -10,12 +10,12 @@ const PrivacyPolicy = () => {
             Effective Date: 18th May 2024
           </h2>
           <p>
-            Welcome to Quick Easy Recipes! Your privacy is important to us. This
+            Welcome to Recipeasy Online! Your privacy is important to us. This
             Privacy Policy explains how we collect, use, disclose, and safeguard
-            your information when you visit our website,
-            www.quickeasyrecipes.com, and sign up for our mailing list. Please
-            read this privacy policy carefully. If you do not agree with the
-            terms of this privacy policy, please do not access the site.
+            your information when you visit our website, www.recipeasy.online,
+            and sign up for our mailing list. Please read this privacy policy
+            carefully. If you do not agree with the terms of this privacy
+            policy, please do not access the site.
           </p>
         </section>
         <section>
@@ -47,7 +47,7 @@ const PrivacyPolicy = () => {
           <ul className="list-disc list-inside">
             <li>
               <strong>Email Communications:</strong> To send you newsletters,
-              updates, and promotional materials related to Quick Easy Recipes.
+              updates, and promotional materials related to Recipeasy Online.
             </li>
             <li>
               <strong>Site Improvements:</strong> To understand how our website
@@ -103,7 +103,7 @@ const PrivacyPolicy = () => {
             Children&apos;s Privacy
           </h2>
           <p>
-            Quick Easy Recipes does not knowingly collect or solicit personal
+            Recipeasy Online does not knowingly collect or solicit personal
             information from children under the age of 13. If we learn that we
             have collected personal information from a child under age 13
             without verification of parental consent, we will delete that
@@ -130,20 +130,16 @@ const PrivacyPolicy = () => {
           </p>
           <p>
             Email:{' '}
-            <a href="mailto:privacy@quickeasyrecipes.com">
-              privacy@quickeasyrecipes.com
+            <a href="mailto:privacy@recipeasy.online">
+              privacy@recipeasy.online
             </a>
-          </p>
-          <p>
-            Mailing Address: Quick Easy Recipes, Recipe Building, London, SW1A
-            1AA
           </p>
         </section>
         <section>
           <p>By using our website, you consent to our Privacy Policy.</p>
         </section>
         <section>
-          <p>This Privacy Policy was last updated on 18th May 2024.</p>
+          <p>This Privacy Policy was last updated on 24th May 2024.</p>
         </section>
       </div>
     </div>

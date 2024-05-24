@@ -17,10 +17,10 @@ const AboutUs = () => {
         </section>
         <section>
           <h2 className="text-3xl font-bold mt-4 mb-4">
-            Quick Easy Recipes - The Project
+            Recipeasy Online - The Project
           </h2>
           <p>
-            Quick Easy Recipes is my personal project born out of a desire to
+            Recipeasy Online is my personal project born out of a desire to
             combine my technical skills with my interest in simplifying meal
             preparation. The site is designed to provide users with fast,
             simple, and delicious recipes, showcasing my ability to integrate

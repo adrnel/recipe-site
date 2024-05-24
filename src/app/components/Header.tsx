@@ -29,7 +29,7 @@ const Header = () => {
           <div className="flex justify-between items-center w-full md:w-auto">
             <Link href="/">
               <h1 className="text-xl md:text-2xl font-bold text-center flex-1 md:text-left">
-                Quick Easy Recipes
+                Recipeasy Online
               </h1>
             </Link>
             <button

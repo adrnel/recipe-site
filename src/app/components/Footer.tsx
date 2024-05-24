@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="bg-gray-900 text-white p-4">
     <div className="container mx-auto px-4 flex flex-wrap justify-between items-center">
       <div className="w-full md:w-auto mb-4 md:mb-0 text-center">
-        <p>Contact us: +123 456 7890 | contact@quickeasyrecipes.com</p>
+        <p>Contact us: contact@recipeasy.online</p>
         <div className="social-icons">{/* Icons for social media */}</div>
       </div>
       <div className="w-full md:w-auto">
@@ -17,9 +17,10 @@ const Footer = () => (
             type="email"
             id="email-signup"
             placeholder="Your email"
-            className="flex-1 m-2 p-2 rounded"
+            className="flex-1 m-2 p-2 rounded text-gray-900"
+            disabled
           />
-          <button type="submit" className="m-2">
+          <button type="submit" className="m-2" disabled>
             Subscribe
           </button>
         </form>
@@ -33,7 +34,7 @@ const Footer = () => (
         Terms & Conditions
       </Link>
       <p className="text-center w-full md:w-auto">
-        © 2024 Quick Easy Recipes. All rights reserved.
+        © 2024 Recipeasy Online. All rights reserved.
       </p>
     </div>
   </footer>

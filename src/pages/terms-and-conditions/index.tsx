@@ -10,12 +10,12 @@ const TermsAndConditions = () => {
             Effective Date: 18th May 2024
           </h2>
           <p>
-            Welcome to Quick Easy Recipes! These terms and conditions outline
-            the rules and regulations for the use of Quick Easy Recipes&apos;
-            Website, located at www.quickeasyrecipes.com. By accessing this
-            website, we assume you accept these terms and conditions. Do not
-            continue to use Quick Easy Recipes if you do not agree to take all
-            of the terms and conditions stated on this page.
+            Welcome to Recipeasy Online! These terms and conditions outline the
+            rules and regulations for the use of Recipeasy Online&apos; Website,
+            located at www.recipeasy.online. By accessing this website, we
+            assume you accept these terms and conditions. Do not continue to use
+            Recipeasy Online if you do not agree to take all of the terms and
+            conditions stated on this page.
           </p>
         </section>
         <section>
@@ -23,20 +23,18 @@ const TermsAndConditions = () => {
             Intellectual Property Rights
           </h2>
           <p>
-            Unless otherwise stated, Quick Easy Recipes and/or its licensors own
-            the intellectual property rights for all material on Quick Easy
-            Recipes. All intellectual property rights are reserved. You may
-            access this from Quick Easy Recipes for your own personal use
+            Unless otherwise stated, Recipeasy Online and/or its licensors own
+            the intellectual property rights for all material on Recipeasy
+            Online. All intellectual property rights are reserved. You may
+            access this from Recipeasy Online for your own personal use
             subjected to restrictions set in these terms and conditions.
           </p>
           <p>You must not:</p>
           <ul className="list-disc list-inside">
-            <li>Republish material from Quick Easy Recipes</li>
-            <li>Sell, rent or sub-license material from Quick Easy Recipes</li>
-            <li>
-              Reproduce, duplicate or copy material from Quick Easy Recipes
-            </li>
-            <li>Redistribute content from Quick Easy Recipes</li>
+            <li>Republish material from Recipeasy Online</li>
+            <li>Sell, rent or sub-license material from Recipeasy Online</li>
+            <li>Reproduce, duplicate or copy material from Recipeasy Online</li>
+            <li>Redistribute content from Recipeasy Online</li>
           </ul>
         </section>
         <section>
@@ -44,14 +42,14 @@ const TermsAndConditions = () => {
           <p>
             Parts of this website offer an opportunity for users to post and
             exchange opinions and information in certain areas of the website.
-            Quick Easy Recipes does not filter, edit, publish or review Comments
+            Recipeasy Online does not filter, edit, publish or review Comments
             prior to their presence on the website. Comments do not reflect the
-            views and opinions of Quick Easy Recipes, its agents, and/or
+            views and opinions of Recipeasy Online, its agents, and/or
             affiliates. Comments reflect the views and opinions of the person
             who posts their views and opinions.
           </p>
           <p>
-            Quick Easy Recipes reserves the right to monitor all Comments and to
+            Recipeasy Online reserves the right to monitor all Comments and to
             remove any Comments which can be considered inappropriate,
             offensive, or causes a breach of these Terms and Conditions.
           </p>
