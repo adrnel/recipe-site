@@ -4,19 +4,19 @@ Welcome to Recipeasy Online, a recipe website designed to showcase my web develo
 
 ## Project URLs
 
-Staging Environment: staging.recipeasy.online
-Production Environment: recipeasy.online
+- Staging Environment: [staging.recipeasy.online](https://staging.recipeasy.online)
+- Production Environment: [recipeasy.online](https://recipeasy.online)
 
 ## Overview
 
 This project utilizes the following technologies and tools:
 
-Next.js for the frontend framework.
-React for building user interfaces.
-TailwindCSS for styling.
-Jest and Cypress for testing.
-GitHub Actions for CI/CD.
-Vercel for hosting and deployment.
+- Next.js for the frontend framework.
+- React for building user interfaces.
+- TailwindCSS for styling.
+- Jest and Cypress for testing.
+- GitHub Actions for CI/CD.
+- Vercel for hosting and deployment.
 
 ## Getting Started
 
@@ -138,4 +138,4 @@ This project is licensed under the "No Commercial Use, No Derivatives" License.
 
 You are not allowed to copy, distribute, or use any part of this project for commercial purposes or create derivative works from it.
 
-See the [LICENSE](LICENSE) file for more details.
+See the [LICENSE](LICENSE.md) file for more details.
