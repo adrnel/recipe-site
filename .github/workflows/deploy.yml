@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -38,10 +38,10 @@ jobs:
         if: github.ref == 'refs/heads/staging'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: npx vercel --prod --token $VERCEL_TOKEN --env STAGING=true
+        run: npx vercel --prod --token $VERCEL_TOKEN --env STAGING=true --confirm
 
       - name: Deploy to Production on Vercel
         if: github.ref == 'refs/heads/main'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: npx vercel --prod --token $VERCEL_TOKEN --env PRODUCTION=true
+        run: npx vercel --prod --token $VERCEL_TOKEN --env PRODUCTION=true --confirm
