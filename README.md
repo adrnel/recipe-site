@@ -116,13 +116,15 @@ Environment variables are used to configure the application. These variables sho
 
 Staging Environment Variables:
 
-1. `NEXT_PUBLIC_API_URL_STAGING`
-2. `VERCEL_TOKEN`
+1. `NEXT_PUBLIC_API_URL`
+2. `NEXT_PUBLIC_ENVIRONMENT`
+3. `VERCEL_TOKEN`
 
 Production Environment Variables:
 
-1. `NEXT_PUBLIC_API_URL_PRODUCTION`
-2. `VERCEL_TOKEN`
+1. `NEXT_PUBLIC_API_URL`
+2. `NEXT_PUBLIC_ENVIRONMENT`
+3. `VERCEL_TOKEN`
 
 ## License
 
