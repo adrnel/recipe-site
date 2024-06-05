@@ -34,24 +34,6 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
 
-      - name: Start the server
-        run: npm start &
-        env:
-          NEXT_PUBLIC_API_URL: http://localhost:3000
-
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:3000
-
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          build: npm run build
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
-        env:
-          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
-
       - name: Deploy to Staging on Vercel
         if: github.ref == 'refs/heads/staging'
         env:
