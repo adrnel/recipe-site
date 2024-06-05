@@ -29,7 +29,9 @@ const Header = () => {
           <div className="flex justify-between items-center w-full md:w-auto">
             <Link href="/">
               <h1 className="text-xl md:text-2xl font-bold text-center flex-1 md:text-left">
-                Recipeasy Online
+                {process.env.NEXT_PUBLIC_ENVIRONMENT === 'stage'
+                  ? 'Recipeasy Staging'
+                  : 'Recipeasy Online'}
               </h1>
             </Link>
             <button
