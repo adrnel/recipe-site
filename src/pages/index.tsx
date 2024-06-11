@@ -50,6 +50,7 @@ const HomePage = ({ recipes }: HomePageProps) => {
               layout="fill"
               objectFit="cover"
               priority
+              className="rounded-b-lg"
             />
             <h1 className="absolute text-6xl font-bold text-white max-w-2xl mx-auto px-4 my-8 text-center">
               Discover Delicious Dishes
