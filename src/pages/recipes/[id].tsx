@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { Recipe } from '@/types';
@@ -20,82 +21,99 @@ const RecipePage = ({ recipe }: RecipePageProps) => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="w-full max-w-4xl p-5 bg-white shadow-lg">
-        <h1 className="text-2xl font-bold my-2 text-center">{recipe.name}</h1>
-        <div className="flex justify-center mb-8">
-          <Image
-            src={recipe.image}
-            alt={recipe.name}
-            width={500}
-            height={500}
-            className="rounded-lg"
-          />
-        </div>
-        <div className="my-4 hidden sm:block">
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full bg-gray-200 rounded-lg">
-              <thead>
-                <tr>
-                  <th className="px-4 py-2">Prep Time</th>
-                  <th className="px-4 py-2">Cooking Time</th>
-                  <th className="px-4 py-2">Difficulty</th>
-                  <th className="px-4 py-2">Serves</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="px-4 py-2 text-center">{recipe.prepTime}</td>
-                  <td className="px-4 py-2 text-center">
-                    {recipe.cookingTime}
-                  </td>
-                  <td className="px-4 py-2 text-center">{recipe.difficulty}</td>
-                  <td className="px-4 py-2 text-center">{recipe.serves}</td>
-                </tr>
-              </tbody>
-            </table>
+    <>
+      <Head>
+        <title>{recipe.name} | Recipe</title>
+        <meta
+          name="description"
+          content={`Learn how to make ${recipe.name}.`}
+        />
+      </Head>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="w-full max-w-4xl p-5 bg-white shadow-lg">
+          <h1 className="text-2xl font-bold my-2 text-center">{recipe.name}</h1>
+          <div className="flex justify-center mb-8">
+            <div className="relative w-full max-w-[500px] h-auto max-h-[500px]">
+              <Image
+                src={recipe.image}
+                alt={recipe.name}
+                layout="responsive"
+                width={500}
+                height={500}
+                objectFit="contain"
+                className="rounded-lg"
+              />
+            </div>
           </div>
-        </div>
+          <div className="my-4 hidden sm:block">
+            <div className="overflow-x-auto">
+              <table className="table-auto w-full bg-gray-200 rounded-lg">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2">Prep Time</th>
+                    <th className="px-4 py-2">Cooking Time</th>
+                    <th className="px-4 py-2">Difficulty</th>
+                    <th className="px-4 py-2">Serves</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="px-4 py-2 text-center">{recipe.prepTime}</td>
+                    <td className="px-4 py-2 text-center">
+                      {recipe.cookingTime}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      {recipe.difficulty}
+                    </td>
+                    <td className="px-4 py-2 text-center">{recipe.serves}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-        <div className="block sm:hidden mb-8 rounded-lg border-solid border-2 overflow-hidden">
-          <div>
-            <div className="font-medium p-2">Prep Time</div>
-            <div className="p-2 bg-gray-100">{recipe.prepTime}</div>
+          <div className="block sm:hidden mb-8 rounded-lg border-solid border-2 overflow-hidden">
+            <div>
+              <div className="font-medium p-2">Prep Time</div>
+              <div className="p-2 bg-gray-100">{recipe.prepTime}</div>
+            </div>
+            <div>
+              <div className="font-medium p-2">Cooking Time</div>
+              <div className="p-2 bg-gray-100">{recipe.cookingTime}</div>
+            </div>
+            <div>
+              <div className="font-medium p-2">Difficulty</div>
+              <div className="p-2 bg-gray-100">{recipe.difficulty}</div>
+            </div>
+            <div>
+              <div className="font-medium p-2">Serves</div>
+              <div className="p-2 bg-gray-100 rounded-b-lg">
+                {recipe.serves}
+              </div>
+            </div>
           </div>
-          <div>
-            <div className="font-medium p-2">Cooking Time</div>
-            <div className="p-2 bg-gray-100">{recipe.cookingTime}</div>
-          </div>
-          <div>
-            <div className="font-medium p-2">Difficulty</div>
-            <div className="p-2 bg-gray-100">{recipe.difficulty}</div>
-          </div>
-          <div>
-            <div className="font-medium p-2">Serves</div>
-            <div className="p-2 bg-gray-100 rounded-b-lg">{recipe.serves}</div>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="md:col-span-1">
-            <h2 className="text-xl font-bold">Ingredients</h2>
-            <ul className="list-disc pl-5">
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="md:col-span-2">
-            <h2 className="text-xl font-bold">Method</h2>
-            <ul className="list-disc pl-5">
-              {recipe.method.map((step, index) => (
-                <li key={index}>{step}</li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="md:col-span-1">
+              <h2 className="text-xl font-bold">Ingredients</h2>
+              <ul className="list-disc pl-5">
+                {recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:col-span-2">
+              <h2 className="text-xl font-bold">Method</h2>
+              <ul className="list-disc pl-5">
+                {recipe.method.map((step, index) => (
+                  <li key={index}>{step}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

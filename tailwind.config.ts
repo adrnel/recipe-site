@@ -16,6 +16,9 @@ const config: Config = {
       fontFamily: {
         sans: ['Montserrat', 'Helvetica', 'Arial', 'sans-serif'],
       },
+      colors: {
+        goldenrod: '#9d7309',
+      },
     },
   },
   plugins: [],
