@@ -47,9 +47,9 @@ describe('RecipeCard component', () => {
     expect(recipeRatingElement).toBeInTheDocument();
   });
 
-  it('renders the recipe time', () => {
+  it('renders the recipe cooking time', () => {
     render(<RecipeCard recipe={mockRecipe} />);
-    const recipeTimeElement = screen.getByText(/30 minutes/i);
+    const recipeTimeElement = screen.getByText(/15 minutes/i);
     expect(recipeTimeElement).toBeInTheDocument();
   });
 
