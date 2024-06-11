@@ -32,15 +32,17 @@ interface HomePageProps {
 const HomePage = ({ recipes }: HomePageProps) => {
   return (
     <main className="relative">
-      <div
-        className="bg-hero-pattern bg-cover bg-center h-screen w-full flex items-center justify-center text-white text-shadow"
-        style={{ backgroundImage: 'url(/chili_con_carne.png)' }}
-      >
-        <h1 className="text-6xl font-bold text-white max-w-2xl mx-auto px-4 my-8 text-center">
-          Discover Delicious Dishes
-        </h1>
+      <div className="bg-white w-full flex justify-center main-image-section relative">
+        <div
+          className="bg-hero-pattern bg-cover bg-center h-screen w-[1000px] flex items-center justify-center text-white text-shadow"
+          style={{ backgroundImage: 'url(/chili_con_carne.png)' }}
+        >
+          <h1 className="text-6xl font-bold text-white max-w-2xl mx-auto px-4 my-8 text-center">
+            Discover Delicious Dishes
+          </h1>
+        </div>
       </div>
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8 top-recipes-section">
         <h2 className="text-2xl font-bold mb-6">Top Recipes</h2>
         <Slider {...settings}>
           {recipes.map((recipe) => (

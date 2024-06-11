@@ -43,17 +43,14 @@ describe('HomePage', () => {
   it('renders the main elements correctly', () => {
     render(<HomePage recipes={mockRecipes} />);
 
-    // Check hero section
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
       'Discover Delicious Dishes'
     );
 
-    // Check top recipes heading
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
       'Top Recipes'
     );
 
-    // Check if recipes are rendered in the slider
     mockRecipes.forEach((recipe) => {
       expect(screen.getByText(recipe.name)).toBeInTheDocument();
       expect(screen.getByAltText(recipe.name)).toBeInTheDocument();
