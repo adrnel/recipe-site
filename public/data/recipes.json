@@ -33,8 +33,8 @@
   },
   {
     "id": "2",
-    "name": "Shepard's Pie",
-    "image": "/shepards_pie.png",
+    "name": "Shepherd's Pie",
+    "image": "/shepherds_pie.png",
     "summary": "Savory pie filled with cooked meat, vegetables, and topped with a mashed potato crust.",
     "rating": "4.5",
     "ratingsCount": "22",
