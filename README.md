@@ -128,12 +128,6 @@ Production Environment Variables:
 
 ## License
 
-This project is licensed under the "No Commercial Use, No Derivatives" License.
-
-You are not allowed to copy, distribute, or use any part of this project for commercial purposes or create derivative works from it.
-
-## License
-
 Feel free to explore the code, test the application, and provide any feedback. Thank you for checking out Recipeasy!
 
 This project is licensed under the "No Commercial Use, No Derivatives" License.
