@@ -2,7 +2,25 @@ import { Recipe } from '@/types';
 import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
-import HomePage, { getServerSideProps } from '../../pages/index';
+
+const addEventListener = jest.fn();
+const removeEventListener = jest.fn();
+const mockRouter = {
+  push: jest.fn(),
+  query: {},
+  events: {
+    on: addEventListener,
+    off: removeEventListener,
+  },
+};
+
+jest.mock('next/router', () => ({
+  useRouter: () => mockRouter,
+}));
+
+const homePageModule = require('../../pages/index');
+const HomePage = homePageModule.default;
+const getServerSideProps = homePageModule.getServerSideProps;
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 

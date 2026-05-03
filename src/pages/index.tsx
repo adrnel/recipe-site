@@ -3,8 +3,9 @@ import {
   getCategoryList,
   getRecipeCategory,
 } from '@/app/components/recipeMeta';
+import SearchRecipes from '@/app/components/SearchRecipes';
 import { Recipe } from '@/types';
-import { ArrowRight, Filter, Search, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, Filter, Sparkles, Star } from 'lucide-react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -79,29 +80,23 @@ const HomePage = ({ recipes }: HomePageProps) => {
               </p>
 
               <div className="mt-10 max-w-2xl rounded-[2rem] border border-white/70 bg-white/90 p-3 shadow-[0_30px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center">
-                  <label htmlFor="homepage-search" className="sr-only">
-                    Search recipes, ingredients, or cuisines
-                  </label>
-                  <div className="flex flex-1 items-center gap-3 rounded-[1.5rem] bg-stone-50 px-4 py-4">
-                    <Search size={20} className="text-stone-400" />
-                    <input
-                      id="homepage-search"
-                      type="text"
-                      value={searchQuery}
-                      onChange={(event) => setSearchQuery(event.target.value)}
-                      placeholder="Search recipes, ingredients, or cuisines..."
-                      className="w-full bg-transparent text-base text-stone-900 placeholder:text-stone-400 focus:outline-none"
-                    />
-                  </div>
-                  <Link
-                    href="/recipes"
-                    className="inline-flex items-center justify-center gap-2 rounded-[1.5rem] bg-emerald-600 px-6 py-4 text-sm font-semibold text-white hover:bg-emerald-700"
-                  >
-                    Explore all
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
+                <SearchRecipes
+                  buttonClassName="inline-flex items-center justify-center rounded-[1.5rem] bg-emerald-600 px-6 py-4 text-sm font-semibold text-white hover:bg-emerald-700"
+                  buttonLabel={
+                    searchQuery.trim().length > 0
+                      ? 'Search recipes'
+                      : 'Browse recipes'
+                  }
+                  containerClassName="relative"
+                  defaultQuery={searchQuery}
+                  dropdownClassName="absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
+                  formClassName="flex flex-col gap-3 md:flex-row md:items-center"
+                  inputClassName="w-full bg-transparent text-base text-stone-900 placeholder:text-stone-400 focus:outline-none"
+                  inputId="homepage-search"
+                  onQueryChange={setSearchQuery}
+                  placeholder="Search recipes, ingredients, or cuisines..."
+                  recipes={recipes}
+                />
               </div>
 
               <div className="mt-10 flex flex-wrap items-center gap-3 text-sm text-stone-600">

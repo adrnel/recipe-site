@@ -42,10 +42,10 @@ const mockRecipes: Recipe[] = [
 
 describe('Recipes Page', () => {
   it('renders the recipes correctly', () => {
-    render(<Recipes recipes={mockRecipes} />);
+    render(<Recipes recipes={mockRecipes} initialSearchQuery="" />);
     const recipeCards = screen.getAllByTestId('recipe-card');
     expect(recipeCards).toHaveLength(mockRecipes.length);
-    expect(screen.getByText('Recipe index')).toBeTruthy();
+    expect(screen.getByText('Recipe library')).toBeTruthy();
     expect(screen.getByText('Spaghetti Carbonara')).toBeTruthy();
     expect(screen.getByText('Chicken Alfredo')).toBeTruthy();
   });
@@ -70,6 +70,7 @@ describe('Recipes Page', () => {
       expect.objectContaining({
         props: {
           recipes: mockRecipes,
+          initialSearchQuery: '',
         },
       })
     );

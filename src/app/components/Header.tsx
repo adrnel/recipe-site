@@ -1,17 +1,19 @@
-import { BookOpen, Menu, Search, Soup, X } from 'lucide-react';
+import { Menu, Soup, X } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import SearchRecipes from './SearchRecipes';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const navItems = [
     { href: '/', label: 'Inspiration' },
-    { href: '/recipes', label: 'Recipe Index' },
+    { href: '/recipes', label: 'Recipes' },
     { href: '/about', label: 'About' },
   ];
 
@@ -35,6 +37,19 @@ const Header = () => {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [router.pathname]);
+
+  useEffect(() => {
+    const query = router.query.q;
+
+    if (typeof query === 'string') {
+      setSearchQuery(query);
+      return;
+    }
+
+    if (router.pathname !== '/recipes') {
+      setSearchQuery('');
+    }
+  }, [router.pathname, router.query.q]);
 
   const brandName =
     process.env.NEXT_PUBLIC_ENVIRONMENT === 'stage'
@@ -79,22 +94,18 @@ const Header = () => {
             ))}
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href="/recipes"
-              aria-label="Search recipes"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-stone-200 bg-white text-stone-600 transition-colors hover:border-emerald-200 hover:text-emerald-700"
-            >
-              <Search size={18} />
-            </Link>
-            <Link
-              href="/recipes"
-              className="inline-flex items-center gap-2 rounded-2xl bg-stone-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
-            >
-              <BookOpen size={18} />
-              Browse Recipes
-            </Link>
-          </div>
+          <SearchRecipes
+            buttonLabel="Search"
+            containerClassName="relative hidden md:block"
+            defaultQuery={searchQuery}
+            dropdownClassName="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
+            formClassName="flex items-center gap-2 rounded-[1.5rem] border border-stone-200 bg-white p-2 shadow-sm"
+            iconClassName="ml-2 text-stone-400"
+            inputClassName="w-44 bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+            inputId="header-recipe-search"
+            onQueryChange={setSearchQuery}
+            placeholder="Search recipes"
+          />
 
           <button
             type="button"
@@ -114,6 +125,18 @@ const Header = () => {
           style={{ maxHeight: '0' }}
         >
           <div className="flex flex-col gap-2 border-t border-stone-200/80 pt-4">
+            <SearchRecipes
+              buttonLabel="Go"
+              containerClassName="relative mb-2"
+              defaultQuery={searchQuery}
+              dropdownClassName="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
+              formClassName="rounded-[1.5rem] border border-stone-200 bg-white p-2 shadow-sm"
+              iconClassName="ml-2 text-stone-400"
+              inputClassName="w-full bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+              inputId="header-recipe-search-mobile"
+              onQueryChange={setSearchQuery}
+              placeholder="Search recipes"
+            />
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -123,14 +146,6 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-            <button
-              type="button"
-              onClick={() => router.push('/recipes')}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-stone-950 px-5 py-3 text-sm font-semibold text-white"
-            >
-              <Search size={18} />
-              Search Recipes
-            </button>
           </div>
         </div>
       </nav>

@@ -14,10 +14,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 interface RecipesProps {
   recipes: Recipe[];
+  initialSearchQuery: string;
 }
 
-const Recipes = ({ recipes }: RecipesProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const Recipes = ({ recipes, initialSearchQuery }: RecipesProps) => {
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
   const [activeCategory, setActiveCategory] = useState('All');
 
   const categories = useMemo(() => getCategoryList(recipes), [recipes]);
@@ -41,7 +42,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
   return (
     <>
       <Head>
-        <title>Recipe Index | Recipeasy</title>
+        <title>Recipes | Recipeasy</title>
         <meta
           name="description"
           content="Browse the full Recipeasy collection with the updated recipe index design."
@@ -52,7 +53,7 @@ const Recipes = ({ recipes }: RecipesProps) => {
           <section className="grid gap-10 lg:grid-cols-[1fr,0.72fr] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">
-                Recipe index
+                Recipe library
               </p>
               <h1 className="mt-4 font-display text-5xl font-black leading-none text-stone-950 md:text-6xl">
                 Every dish, one polished catalog.
@@ -134,14 +135,17 @@ const Recipes = ({ recipes }: RecipesProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (
-  _context: GetServerSidePropsContext
+  context: GetServerSidePropsContext
 ) => {
   const res = await fetch(`${API_URL}/api/recipes`);
   const recipes: Recipe[] = await res.json();
+  const initialSearchQuery =
+    typeof context.query.q === 'string' ? context.query.q : '';
 
   return {
     props: {
       recipes,
+      initialSearchQuery,
     },
   };
 };
