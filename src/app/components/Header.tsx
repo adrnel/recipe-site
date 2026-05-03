@@ -12,7 +12,7 @@ const Header = () => {
   const router = useRouter();
 
   const navItems = [
-    { href: '/', label: 'Inspiration' },
+    { href: '/', label: 'Home' },
     { href: '/recipes', label: 'Recipes' },
     { href: '/about', label: 'About' },
   ];

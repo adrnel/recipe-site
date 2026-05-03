@@ -69,7 +69,7 @@ const HomePage = ({ recipes }: HomePageProps) => {
             <div className="slide-up">
               <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-emerald-800">
                 <Star size={14} className="fill-current" />
-                Voted #1 Recipe Journal
+                Fresh ideas for everyday cooking
               </div>
               <h1 className="mt-6 font-display text-5xl font-black leading-none text-stone-950 md:text-7xl xl:text-[5.5rem]">
                 Master the art of home cooking

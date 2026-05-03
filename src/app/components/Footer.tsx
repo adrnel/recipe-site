@@ -45,7 +45,7 @@ const Footer = () => (
           </h2>
           <div className="mt-6 flex flex-col gap-3 text-stone-300">
             <Link href="/" className="transition-colors hover:text-emerald-400">
-              Inspiration
+              Home
             </Link>
             <Link
               href="/recipes"
