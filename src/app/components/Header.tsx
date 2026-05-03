@@ -1,4 +1,5 @@
-import { Menu, Soup, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -74,12 +75,19 @@ const Header = () => {
       >
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-[0_12px_24px_rgba(5,150,105,0.25)]">
-              <Soup size={22} />
-            </span>
-            <span className="font-display text-2xl font-black tracking-tight text-stone-900">
-              {brandName}
-            </span>
+            <Image
+              src="/recipeasy-logo-full.png"
+              alt={brandName}
+              width={577}
+              height={433}
+              priority
+              className="h-12 w-auto m-min-w-[181px]"
+            />
+            {process.env.NEXT_PUBLIC_ENVIRONMENT === 'stage' ? (
+              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-800">
+                Staging
+              </span>
+            ) : null}
           </Link>
 
           <div className="hidden items-center gap-2 md:flex">
@@ -96,12 +104,13 @@ const Header = () => {
 
           <SearchRecipes
             buttonLabel="Search"
-            containerClassName="relative hidden md:block"
+            containerClassName="relative hidden md:block md:w-[11.5rem] min-[860px]:w-[13rem] lg:w-auto"
             defaultQuery={searchQuery}
             dropdownClassName="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
             formClassName="flex items-center gap-2 rounded-[1.5rem] border border-stone-200 bg-white p-2 shadow-sm"
+            buttonClassName="shrink-0 rounded-[1rem] bg-stone-950 px-2.5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800 min-[860px]:px-3 lg:px-4"
             iconClassName="ml-2 text-stone-400"
-            inputClassName="w-44 bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+            inputClassName="w-16 min-w-0 bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none min-[860px]:w-20 lg:w-44"
             inputId="header-recipe-search"
             onQueryChange={setSearchQuery}
             placeholder="Search recipes"
@@ -130,9 +139,10 @@ const Header = () => {
               containerClassName="relative mb-2"
               defaultQuery={searchQuery}
               dropdownClassName="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
-              formClassName="rounded-[1.5rem] border border-stone-200 bg-white p-2 shadow-sm"
+              formClassName="flex items-center gap-2 rounded-[1.5rem] border border-stone-200 bg-white p-2 shadow-sm"
+              buttonClassName="shrink-0 rounded-[1rem] bg-stone-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
               iconClassName="ml-2 text-stone-400"
-              inputClassName="w-full bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
+              inputClassName="min-w-0 flex-1 bg-transparent px-1 py-2 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
               inputId="header-recipe-search-mobile"
               onQueryChange={setSearchQuery}
               placeholder="Search recipes"
