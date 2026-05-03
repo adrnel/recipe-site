@@ -1,4 +1,4 @@
-import { ArrowRight, Instagram, Mail, MapPin, Soup } from 'lucide-react';
+import { ArrowRight, Mail, Soup } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => (
@@ -23,19 +23,6 @@ const Footer = () => (
               <Mail size={16} />
               contact@recipeasy.online
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-              <MapPin size={16} />
-              Online kitchen studio
-            </span>
-          </div>
-          <div className="mt-6 flex gap-3">
-            <a
-              href="https://instagram.com"
-              aria-label="Recipeasy on Instagram"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-stone-100 transition-colors hover:bg-emerald-600"
-            >
-              <Instagram size={18} />
-            </a>
           </div>
         </div>
 
