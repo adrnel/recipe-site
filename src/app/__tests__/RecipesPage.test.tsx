@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import Recipes, { getServerSideProps } from '../../pages/recipes';
 import { Recipe } from '@/types';
+import { describe, expect, it, jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
+import Recipes, { getServerSideProps } from '../../pages/recipes';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
@@ -44,8 +45,9 @@ describe('Recipes Page', () => {
     render(<Recipes recipes={mockRecipes} />);
     const recipeCards = screen.getAllByTestId('recipe-card');
     expect(recipeCards).toHaveLength(mockRecipes.length);
-    expect(screen.getByText('Spaghetti Carbonara')).toBeInTheDocument();
-    expect(screen.getByText('Chicken Alfredo')).toBeInTheDocument();
+    expect(screen.getByText('Recipe index')).toBeTruthy();
+    expect(screen.getByText('Spaghetti Carbonara')).toBeTruthy();
+    expect(screen.getByText('Chicken Alfredo')).toBeTruthy();
   });
 
   it('fetches recipes in getServerSideProps', async () => {
@@ -53,7 +55,7 @@ describe('Recipes Page', () => {
       Promise.resolve({
         json: () => Promise.resolve(mockRecipes),
       })
-    ) as jest.Mock;
+    ) as unknown as typeof fetch;
 
     const context = {
       req: {},

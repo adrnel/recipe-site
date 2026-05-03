@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import HomePage, { getServerSideProps } from '../../pages/index';
 import { Recipe } from '@/types';
+import { describe, expect, it, jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
+import HomePage, { getServerSideProps } from '../../pages/index';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
@@ -43,17 +44,18 @@ describe('HomePage', () => {
   it('renders the main elements correctly', () => {
     render(<HomePage recipes={mockRecipes} />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Discover Delicious Dishes'
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toContain(
+      'Master the art of home cooking'
     );
 
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
-      'Top Recipes'
-    );
+    expect(screen.getByText('Top Recipes')).toBeTruthy();
+    expect(
+      screen.getByPlaceholderText('Search recipes, ingredients, or cuisines...')
+    ).toBeTruthy();
 
     mockRecipes.forEach((recipe) => {
-      expect(screen.getByText(recipe.name)).toBeInTheDocument();
-      expect(screen.getByAltText(recipe.name)).toBeInTheDocument();
+      expect(screen.getAllByText(recipe.name).length).toBeGreaterThan(0);
+      expect(screen.getAllByAltText(recipe.name).length).toBeGreaterThan(0);
     });
   });
 
@@ -62,7 +64,7 @@ describe('HomePage', () => {
       Promise.resolve({
         json: () => Promise.resolve(mockRecipes),
       })
-    ) as jest.Mock;
+    ) as unknown as typeof fetch;
 
     const context = { params: {} } as GetServerSidePropsContext;
 

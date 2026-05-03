@@ -1,16 +1,27 @@
+import { describe, expect, it, jest } from '@jest/globals';
 import {
+  act,
+  fireEvent,
   render,
   screen,
-  fireEvent,
   waitFor,
-  act,
 } from '@testing-library/react';
-import SearchRecipes from './SearchRecipes';
-import { useRouter } from 'next/router';
+
+const addEventListener = jest.fn();
+const removeEventListener = jest.fn();
+const mockRouter = {
+  push: jest.fn(),
+  events: {
+    on: addEventListener,
+    off: removeEventListener,
+  },
+};
 
 jest.mock('next/router', () => ({
-  useRouter: jest.fn(),
+  useRouter: () => mockRouter,
 }));
+
+const SearchRecipes = require('./SearchRecipes').default;
 
 const mockRecipes = [
   {
@@ -49,29 +60,15 @@ global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve(mockRecipes),
   })
-) as jest.Mock;
+) as unknown as typeof fetch;
 
 describe('SearchRecipes component', () => {
-  const addEventListener = jest.fn();
-  const removeEventListener = jest.fn();
-  const mockRouter = {
-    push: jest.fn(),
-    events: {
-      on: addEventListener,
-      off: removeEventListener,
-    },
-  };
-
-  beforeEach(() => {
-    (useRouter as jest.Mock).mockReturnValue(mockRouter);
-  });
-
   it('renders the input element', async () => {
     await act(async () => {
       render(<SearchRecipes />);
     });
     const inputElement = screen.getByPlaceholderText('Search for recipe');
-    expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toBeTruthy();
   });
 
   it('fetches and displays recipes', async () => {
@@ -95,10 +92,10 @@ describe('SearchRecipes component', () => {
 
     await waitFor(() => {
       const recipeLink = screen.getByText('Spaghetti Carbonara');
-      expect(recipeLink).toBeInTheDocument();
+      expect(recipeLink).toBeTruthy();
     });
 
-    expect(screen.queryByText('Chicken Alfredo')).not.toBeInTheDocument();
+    expect(screen.queryByText('Chicken Alfredo')).toBeNull();
   });
 
   it('displays "No results found" when no recipes match the search query', async () => {
@@ -112,7 +109,7 @@ describe('SearchRecipes component', () => {
 
     await waitFor(() => {
       const noResultsElement = screen.getByText('No results found.');
-      expect(noResultsElement).toBeInTheDocument();
+      expect(noResultsElement).toBeTruthy();
     });
   });
 
@@ -127,13 +124,13 @@ describe('SearchRecipes component', () => {
 
     await waitFor(() => {
       const recipeLink = screen.getByText('Spaghetti Carbonara');
-      expect(recipeLink).toBeInTheDocument();
+      expect(recipeLink).toBeTruthy();
     });
 
     fireEvent.mouseDown(document);
 
     await waitFor(() => {
-      expect(screen.queryByText('Spaghetti Carbonara')).not.toBeInTheDocument();
+      expect(screen.queryByText('Spaghetti Carbonara')).toBeNull();
     });
   });
 });

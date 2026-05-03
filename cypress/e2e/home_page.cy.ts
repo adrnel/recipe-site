@@ -1,5 +1,3 @@
-const API_URL = Cypress.env('API_URL');
-
 describe('The Home Page', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -10,39 +8,56 @@ describe('The Home Page', () => {
   });
 
   it('displays the hero section correctly', () => {
-    cy.get('h1').should('contain.text', 'Discover Delicious Dishes');
-    cy.get('.bg-hero-pattern')
-      .should('have.css', 'background-image')
-      .and('include', 'chili_con_carne.png');
+    cy.get('h1').should('contain.text', 'Master the art of home cooking');
+    cy.get(
+      'input[placeholder="Search recipes, ingredients, or cuisines..."]'
+    ).should('exist');
   });
 
-  it('displays the top recipes section with slider', () => {
+  it('displays the top recipes section with cards', () => {
     cy.get('h2').should('contain.text', 'Top Recipes');
-    cy.get('.slick-slider').should('exist');
-    cy.get('.slick-slide').should('have.length.greaterThan', 0);
+    cy.get('[data-testid="recipe-card"]').should('have.length.greaterThan', 0);
   });
 
-  it('renders each recipe in the slider', () => {
-    cy.request(`${API_URL}/api/recipes`).then((response) => {
+  it('filters visible recipes from the search input', () => {
+    cy.get(
+      'input[placeholder="Search recipes, ingredients, or cuisines..."]'
+    ).type('Parmesan');
+
+    cy.get('[data-testid="recipe-card"]').should(
+      'contain.text',
+      'Chicken Parmesan'
+    );
+    cy.get('[data-testid="recipe-card"]').should(
+      'not.contain.text',
+      'Tikka Masala'
+    );
+  });
+
+  it('renders each featured recipe card', () => {
+    cy.request('/api/recipes').then((response) => {
       const recipes = response.body;
 
-      cy.get('.slick-slide').should('have.length', recipes.length);
+      cy.get('[data-testid="recipe-card"]').should(
+        'have.length',
+        recipes.length
+      );
 
-      cy.get('.slick-slide').each(($slide, index) => {
-        const recipe = recipes[index];
-        cy.wrap($slide).within(() => {
-          cy.contains(recipe.name).should('exist');
-          cy.get('img').should('have.attr', 'alt', recipe.name);
-        });
+      recipes.forEach((recipe: { name: string }) => {
+        cy.contains('[data-testid="recipe-card"]', recipe.name).should('exist');
       });
     });
   });
 
   it('navigates to the recipe details page when a recipe is clicked', () => {
-    cy.request(`${API_URL}/api/recipes`).then((response) => {
+    cy.request('/api/recipes').then((response) => {
       const recipes = response.body;
       const recipe = recipes[0];
-      cy.contains(recipe.name).click();
+
+      cy.contains('[data-testid="recipe-card"]', recipe.name)
+        .find('a')
+        .first()
+        .click();
       cy.url().should('include', `/recipes/${recipe.id}`);
     });
   });

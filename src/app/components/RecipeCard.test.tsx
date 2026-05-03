@@ -1,11 +1,13 @@
+import { Recipe } from '@/types';
+import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import RecipeCard from './RecipeCard';
-import { Recipe } from '@/types';
 
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: any) => {
-    return <img {...props} />;
+    const { fill, priority, ...rest } = props;
+    return <img {...rest} />;
   },
 }));
 
@@ -30,7 +32,7 @@ describe('RecipeCard component', () => {
   it('renders the recipe name', () => {
     render(<RecipeCard recipe={mockRecipe} />);
     const recipeNameElement = screen.getByText(/Spaghetti Carbonara/i);
-    expect(recipeNameElement).toBeInTheDocument();
+    expect(recipeNameElement).toBeTruthy();
   });
 
   it('renders the recipe summary', () => {
@@ -38,36 +40,39 @@ describe('RecipeCard component', () => {
     const recipeSummaryElement = screen.getByText(
       /A classic Italian pasta dish/i
     );
-    expect(recipeSummaryElement).toBeInTheDocument();
+    expect(recipeSummaryElement).toBeTruthy();
   });
 
   it('renders the recipe rating', () => {
     render(<RecipeCard recipe={mockRecipe} />);
-    const recipeRatingElement = screen.getByText(/4.5 \(200 ratings\)/i);
-    expect(recipeRatingElement).toBeInTheDocument();
+    const recipeRatingElement = screen.getByText(/4.5/i);
+    expect(recipeRatingElement).toBeTruthy();
+    expect(screen.getByText(/\(200\)/i)).toBeTruthy();
   });
 
   it('renders the recipe cooking time', () => {
     render(<RecipeCard recipe={mockRecipe} />);
-    const recipeTimeElement = screen.getByText(/15 minutes/i);
-    expect(recipeTimeElement).toBeInTheDocument();
+    const recipeTimeElement = screen.getByText(/30 mins/i);
+    expect(recipeTimeElement).toBeTruthy();
   });
 
   it('renders the recipe serves', () => {
     render(<RecipeCard recipe={mockRecipe} />);
-    const recipeServesElement = screen.getByText(/Serves 4/i);
-    expect(recipeServesElement).toBeInTheDocument();
+    const recipeServesElement = screen.getByText('4');
+    expect(recipeServesElement).toBeTruthy();
   });
 
   it('renders the image with the correct src and alt attributes', () => {
     render(<RecipeCard recipe={mockRecipe} />);
     const imageElement = screen.getByAltText(/Spaghetti Carbonara/i);
-    expect(imageElement).toHaveAttribute('src', '/spaghetti-carbonara.jpg');
+    expect(imageElement.getAttribute('src')).toContain(
+      'spaghetti-carbonara.jpg'
+    );
   });
 
   it('renders the link with the correct href', () => {
     render(<RecipeCard recipe={mockRecipe} />);
     const linkElement = screen.getByRole('link', { name: /View Recipe/i });
-    expect(linkElement).toHaveAttribute('href', '/recipes/1');
+    expect(linkElement.getAttribute('href')).toBe('/recipes/1');
   });
 });

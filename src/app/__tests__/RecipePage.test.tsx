@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import RecipePage, { getServerSideProps } from '../../pages/recipes/[id]';
 import { Recipe } from '@/types';
+import { describe, expect, it, jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
+import RecipePage, { getServerSideProps } from '../../pages/recipes/[id]';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
@@ -26,21 +27,17 @@ describe('RecipePage', () => {
   it('renders the recipe details correctly', () => {
     render(<RecipePage recipe={mockRecipe} />);
 
-    expect(screen.getByText('Spaghetti Carbonara')).toBeInTheDocument();
+    expect(screen.getByText('Spaghetti Carbonara')).toBeTruthy();
+    expect(screen.getByText('Ingredients')).toBeTruthy();
+    expect(screen.getByText('Method')).toBeTruthy();
 
-    const prepTimeElements = screen.getAllByText('15 minutes');
-    const cookingTimeElements = screen.getAllByText('15 minutes');
-    const difficultyElements = screen.getAllByText('Easy');
-    const servesElements = screen.getAllByText('4');
+    expect(screen.getAllByText('15 minutes').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText('Easy')).toBeTruthy();
+    expect(screen.getAllByText('4').length).toBeGreaterThan(0);
+    expect(screen.getByText('30 mins')).toBeTruthy();
 
-    // Ensure there are at least two elements for each due to mobile and desktop views
-    expect(prepTimeElements.length).toBeGreaterThanOrEqual(2);
-    expect(cookingTimeElements.length).toBeGreaterThanOrEqual(2);
-    expect(difficultyElements.length).toBeGreaterThanOrEqual(2);
-    expect(servesElements.length).toBeGreaterThanOrEqual(2);
-
-    expect(screen.getByText('ingredient1')).toBeInTheDocument();
-    expect(screen.getByText('step1')).toBeInTheDocument();
+    expect(screen.getByText('ingredient1')).toBeTruthy();
+    expect(screen.getByText('step1')).toBeTruthy();
   });
 
   it('fetches the recipe in getServerSideProps', async () => {
@@ -48,7 +45,7 @@ describe('RecipePage', () => {
       Promise.resolve({
         json: () => Promise.resolve(mockRecipe),
       })
-    ) as jest.Mock;
+    ) as unknown as typeof fetch;
 
     const context = {
       params: { id: '1' },
@@ -69,6 +66,6 @@ describe('RecipePage', () => {
 
   it('renders loading state when recipe is not provided', () => {
     render(<RecipePage recipe={undefined} />);
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeTruthy();
   });
 });
