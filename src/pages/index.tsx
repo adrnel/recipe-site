@@ -11,8 +11,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+import { getRecipes } from '../lib/recipes';
 
 interface HomePageProps {
   recipes: Recipe[];
@@ -211,8 +210,7 @@ const HomePage = ({ recipes }: HomePageProps) => {
 };
 
 export async function getServerSideProps(_context: GetServerSidePropsContext) {
-  const res = await fetch(`${API_URL}/api/recipes`);
-  const recipes: Recipe[] = await res.json();
+  const recipes = await getRecipes();
 
   return {
     props: {

@@ -3,6 +3,14 @@ import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
 
+const mockGetRecipes = jest.fn() as jest.MockedFunction<
+  () => Promise<Recipe[]>
+>;
+
+jest.mock('../../lib/recipes', () => ({
+  getRecipes: mockGetRecipes,
+}));
+
 const addEventListener = jest.fn();
 const removeEventListener = jest.fn();
 const mockRouter = {
@@ -21,8 +29,6 @@ jest.mock('next/router', () => ({
 const homePageModule = require('../../pages/index');
 const HomePage = homePageModule.default;
 const getServerSideProps = homePageModule.getServerSideProps;
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 const mockRecipes: Recipe[] = [
   {
@@ -78,11 +84,7 @@ describe('HomePage', () => {
   });
 
   it('fetches the recipes in getServerSideProps', async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(mockRecipes),
-      })
-    ) as unknown as typeof fetch;
+    mockGetRecipes.mockResolvedValue(mockRecipes);
 
     const context = { params: {} } as GetServerSidePropsContext;
 
@@ -95,7 +97,6 @@ describe('HomePage', () => {
         },
       })
     );
-
-    expect(global.fetch).toHaveBeenCalledWith(`${API_URL}/api/recipes`);
+    expect(mockGetRecipes).toHaveBeenCalled();
   });
 });

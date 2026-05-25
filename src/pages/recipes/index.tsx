@@ -9,8 +9,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import RecipeCard from '../../app/components/RecipeCard';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+import { getRecipes } from '../../lib/recipes';
 
 interface RecipesProps {
   recipes: Recipe[];
@@ -137,8 +136,7 @@ const Recipes = ({ recipes, initialSearchQuery }: RecipesProps) => {
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const res = await fetch(`${API_URL}/api/recipes`);
-  const recipes: Recipe[] = await res.json();
+  const recipes = await getRecipes();
   const initialSearchQuery =
     typeof context.query.q === 'string' ? context.query.q : '';
 

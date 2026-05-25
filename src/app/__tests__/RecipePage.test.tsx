@@ -2,9 +2,18 @@ import { Recipe } from '@/types';
 import { describe, expect, it, jest } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import { GetServerSidePropsContext } from 'next';
-import RecipePage, { getServerSideProps } from '../../pages/recipes/[id]';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const mockGetRecipeById = jest.fn() as jest.MockedFunction<
+  (id: string) => Promise<Recipe | undefined>
+>;
+
+jest.mock('../../lib/recipes', () => ({
+  getRecipeById: mockGetRecipeById,
+}));
+
+const recipePageModule = require('../../pages/recipes/[id]');
+const RecipePage = recipePageModule.default;
+const getServerSideProps = recipePageModule.getServerSideProps;
 
 const mockRecipe: Recipe = {
   id: '1',
@@ -41,11 +50,7 @@ describe('RecipePage', () => {
   });
 
   it('fetches the recipe in getServerSideProps', async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(mockRecipe),
-      })
-    ) as unknown as typeof fetch;
+    mockGetRecipeById.mockResolvedValue(mockRecipe);
 
     const context = {
       params: { id: '1' },
@@ -60,8 +65,7 @@ describe('RecipePage', () => {
         },
       })
     );
-
-    expect(global.fetch).toHaveBeenCalledWith(`${API_URL}/api/recipes?id=1`);
+    expect(mockGetRecipeById).toHaveBeenCalledWith('1');
   });
 
   it('renders loading state when recipe is not provided', () => {
